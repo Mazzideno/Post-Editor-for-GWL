@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GWL Post Studio — Built by MazziGroup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-brand">
+    <img src="assets/mazzigroup-logo.png" alt="MazziGroup Logo" class="nav-logo">
+    <div class="nav-text">
+      <span class="nav-title">GWL Post Studio</span>
+      <span class="nav-sub">by MazziGroup</span>
+    </div>
+  </div>
+  <div class="nav-controls">
+    <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+      <i class="ti ti-sun" id="themeIcon"></i>
+      <span id="themeLabel">Light Mode</span>
+    </div>
+    <a href="https://github.com/mazzigroup" target="_blank" class="nav-link"><i class="ti ti-brand-github"></i> GitHub</a>
+  </div>
+</nav>
+
+<!-- MAIN STUDIO -->
+<main class="studio-main">
+
+  <!-- LEFT: TOOLS PANEL -->
+  <aside class="tools-panel" id="toolsPanel">
+
+    <!-- TEMPLATES -->
+    <section class="tool-section">
+      <div class="section-label">Templates</div>
+      <div class="template-grid" id="tplGrid">
+        <button class="tpl-btn active" onclick="setTpl('reality',this)">Reality Check</button>
+        <button class="tpl-btn" onclick="setTpl('quote',this)">Bold Quote</button>
+        <button class="tpl-btn" onclick="setTpl('myth',this)">Myth vs Truth</button>
+        <button class="tpl-btn" onclick="setTpl('fact',this)">Language Fact</button>
+        <button class="tpl-btn" onclick="setTpl('culture',this)">Culture Drop</button>
+        <button class="tpl-btn" onclick="setTpl('announce',this)">Announce</button>
+        <button class="tpl-btn" onclick="setTpl('promo',this)">Promo</button>
+        <button class="tpl-btn" onclick="setTpl('blank',this)">Blank</button>
+      </div>
+    </section>
+
+    <!-- TEXT FIELDS -->
+    <section class="tool-section">
+      <div class="section-label">Text Content</div>
+      
+      <div class="field-group">
+        <label>Top Label / Pill</label>
+        <div class="input-with-tools">
+          <input type="text" id="inLabel" value="TODAY'S TRUTH" oninput="renderCanvas()">
+          <div class="mini-tools">
+            <button class="mini-btn" title="UPPERCASE" onclick="transformText('inLabel','upper')">AA</button>
+            <button class="mini-btn" title="lowercase" onclick="transformText('inLabel','lower')">aa</button>
+            <button class="mini-btn" title="Title Case" onclick="transformText('inLabel','title')">Aa</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Main Headline</label>
+        <div class="input-with-tools">
+          <textarea id="inHeadline" oninput="renderCanvas()">Learning a new language has taught me to live fully in the present — because I literally cannot speak any other tense yet.</textarea>
+          <div class="mini-tools">
+            <button class="mini-btn" onclick="transformText('inHeadline','upper')">AA</button>
+            <button class="mini-btn" onclick="transformText('inHeadline','lower')">aa</button>
+            <button class="mini-btn" onclick="transformText('inHeadline','title')">Aa</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Accent / Highlight Phrase</label>
+        <input type="text" id="inAccentPhrase" value="live fully in the present" oninput="renderCanvas()" placeholder="Phrase to color differently">
+      </div>
+
+      <div class="field-group">
+        <label>Body / Subtext</label>
+        <div class="input-with-tools">
+          <textarea id="inBody" oninput="renderCanvas()">Jokes apart — your brain is doing something extraordinary right now. Every tense you master unlocks a new way to tell your story.</textarea>
+          <div class="mini-tools">
+            <button class="mini-btn" onclick="transformText('inBody','upper')">AA</button>
+            <button class="mini-btn" onclick="transformText('inBody','lower')">aa</button>
+            <button class="mini-btn" onclick="transformText('inBody','title')">Aa</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Call to Action</label>
+        <input type="text" id="inCta" value="💬 Which tense trips you up most? Drop it below ↓" oninput="renderCanvas()">
+      </div>
+
+      <div class="field-group">
+        <label>Brand Line (bottom)</label>
+        <input type="text" id="inBrand" value="GOODWILL LANGUAGE SOLUTION  ·  CLARITY. ACROSS BORDERS." oninput="renderCanvas()">
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="tool-section">
+      <div class="section-label">Typography</div>
+      <div class="field-group">
+        <label>Headline Font</label>
+        <select id="fontHeadline" onchange="renderCanvas()">
+          <option value="'Playfair Display', serif">Playfair Display (Elegant)</option>
+          <option value="'Space Grotesk', sans-serif">Space Grotesk (Modern)</option>
+          <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans (Clean)</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Headline Size: <span id="hSizeVal">54</span>px</label>
+        <input type="range" id="hSize" min="28" max="90" value="54" oninput="document.getElementById('hSizeVal').textContent=this.value;renderCanvas()">
+      </div>
+      <div class="field-group">
+        <label>Body Size: <span id="bSizeVal">30</span>px</label>
+        <input type="range" id="bSize" min="18" max="52" value="30" oninput="document.getElementById('bSizeVal').textContent=this.value;renderCanvas()">
+      </div>
+      <div class="field-group">
+        <label>Text Alignment</label>
+        <div class="align-row">
+          <button class="align-btn active" id="alignLeft" onclick="setAlign('left',this)"><i class="ti ti-align-left"></i></button>
+          <button class="align-btn" id="alignCenter" onclick="setAlign('center',this)"><i class="ti ti-align-center"></i></button>
+          <button class="align-btn" id="alignRight" onclick="setAlign('right',this)"><i class="ti ti-align-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLORS & SHAPES -->
+    <section class="tool-section">
+      <div class="section-label">Colors & Background</div>
+
+      <div class="field-group">
+        <label>Accent Color</label>
+        <div class="swatch-row" id="swatches">
+          <div class="swatch active" style="background:#FFCA28" onclick="setAccent('#FFCA28',this)" title="Gold"></div>
+          <div class="swatch" style="background:#FF6B35" onclick="setAccent('#FF6B35',this)" title="Orange"></div>
+          <div class="swatch" style="background:#00E5A0" onclick="setAccent('#00E5A0',this)" title="Mint"></div>
+          <div class="swatch" style="background:#FF4C8B" onclick="setAccent('#FF4C8B',this)" title="Pink"></div>
+          <div class="swatch" style="background:#B3D8FF" onclick="setAccent('#B3D8FF',this)" title="Sky"></div>
+          <div class="swatch" style="background:#A78BFA" onclick="setAccent('#A78BFA',this)" title="Purple"></div>
+          <div class="swatch" style="background:#F9F871" onclick="setAccent('#F9F871',this)" title="Yellow"></div>
+          <div class="swatch" style="background:#FFFFFF" onclick="setAccent('#FFFFFF',this)" title="White"></div>
+          <input type="color" id="customAccent" value="#FFCA28" oninput="setAccent(this.value,null)" title="Custom color" style="width:30px;height:30px;border-radius:50%;border:2px solid #555;cursor:pointer;padding:2px;">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Background Style</label>
+        <select id="bgStyle" onchange="renderCanvas()">
+          <option value="gradient">Gradient</option>
+          <option value="solid">Solid Color</option>
+          <option value="geo">Geometric Pattern</option>
+          <option value="radial">Radial Glow</option>
+          <option value="diagonal">Diagonal Split</option>
+        </select>
+      </div>
+
+      <div class="two-col">
+        <div class="field-group">
+          <label>BG Color 1</label>
+          <input type="color" id="bgTop" value="#0B2D6E" oninput="renderCanvas()">
+        </div>
+        <div class="field-group">
+          <label>BG Color 2</label>
+          <input type="color" id="bgBot" value="#1A5DC8" oninput="renderCanvas()">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Overlay Opacity: <span id="overlayVal">15</span>%</label>
+        <input type="range" id="overlayOp" min="0" max="60" value="15" oninput="document.getElementById('overlayVal').textContent=this.value;renderCanvas()">
+      </div>
+    </section>
+
+    <!-- SHAPES / ELEMENTS -->
+    <section class="tool-section">
+      <div class="section-label">Add Shape Element</div>
+      <div class="shape-grid">
+        <button class="shape-btn" onclick="addShape('rect')" title="Rectangle"><i class="ti ti-rectangle"></i> Rect</button>
+        <button class="shape-btn" onclick="addShape('circle')" title="Circle"><i class="ti ti-circle"></i> Circle</button>
+        <button class="shape-btn" onclick="addShape('triangle')" title="Triangle"><i class="ti ti-triangle"></i> Tri</button>
+        <button class="shape-btn" onclick="addShape('line')" title="Line"><i class="ti ti-minus"></i> Line</button>
+        <button class="shape-btn" onclick="addShape('star')" title="Star"><i class="ti ti-star"></i> Star</button>
+        <button class="shape-btn" onclick="addShape('quote')" title="Quote Mark"><i class="ti ti-quote"></i> Quote</button>
+      </div>
+      <div class="field-group" style="margin-top:8px;">
+        <label>Shape Color</label>
+        <input type="color" id="shapeColor" value="#FFCA28">
+      </div>
+      <div class="field-group">
+        <label>Opacity: <span id="shapeOpVal">20</span>%</label>
+        <input type="range" id="shapeOp" min="5" max="100" value="20" oninput="document.getElementById('shapeOpVal').textContent=this.value">
+      </div>
+      <button class="btn-clear" onclick="clearShapes()"><i class="ti ti-trash"></i> Clear shapes</button>
+    </section>
+
+    <!-- LOGO UPLOAD -->
+    <section class="tool-section">
+      <div class="section-label">Your Logo / Watermark</div>
+      <div class="field-group">
+        <label>Upload Logo PNG</label>
+        <input type="file" id="logoUpload" accept="image/*" onchange="loadUserLogo(this)">
+      </div>
+      <div class="field-group">
+        <label>Logo Position</label>
+        <select id="logoPos" onchange="renderCanvas()">
+          <option value="none">None</option>
+          <option value="br">Bottom Right</option>
+          <option value="bl">Bottom Left</option>
+          <option value="tr">Top Right</option>
+          <option value="tl">Top Left</option>
+          <option value="center">Center Watermark</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Logo Size: <span id="logoSzVal">120</span>px</label>
+        <input type="range" id="logoSz" min="40" max="300" value="120" oninput="document.getElementById('logoSzVal').textContent=this.value;renderCanvas()">
+      </div>
+    </section>
+
+    <!-- EXPORT -->
+    <section class="tool-section">
+      <div class="section-label">Export</div>
+      <div class="export-grid">
+        <button class="export-btn png" onclick="download('png')"><i class="ti ti-photo-down"></i> PNG (1080×1080)</button>
+        <button class="export-btn jpg" onclick="download('jpg')"><i class="ti ti-file-download"></i> JPG (High)</button>
+        <button class="export-btn story" onclick="downloadStory()"><i class="ti ti-device-mobile"></i> Story (1080×1920)</button>
+        <button class="export-btn copy" onclick="copyCaption()"><i class="ti ti-copy"></i> Copy Caption</button>
+      </div>
+    </section>
+
+  </aside>
+
+  <!-- RIGHT: CANVAS PREVIEW -->
+  <section class="canvas-section">
+    <div class="canvas-toolbar">
+      <span class="canvas-size-label">1080 × 1080 px</span>
+      <button class="toolbar-btn" onclick="toggleSize()" id="sizeToggle"><i class="ti ti-device-mobile"></i> Story</button>
+      <button class="toolbar-btn" onclick="resetAll()"><i class="ti ti-refresh"></i> Reset</button>
+    </div>
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="postCanvas" width="1080" height="1080"></canvas>
+    </div>
+    <div class="canvas-hint">Preview auto-updates · Drag shapes on canvas to reposition</div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="studio-footer">
+  <div class="footer-brand">
+    <img src="assets/mazzigroup-logo.png" alt="MazziGroup" class="footer-logo">
+    <div>
+      <span class="footer-name">Built by Ikuyinminu Michael Mazzideno</span>
+      <span class="footer-handle">@mazzigroup · 2026</span>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="tel:+2348122985651">08122985651</a>
+    <a href="https://github.com/mazzigroup" target="_blank">GitHub</a>
+  </div>
+</footer>
+
+<script src="editor.js"></script>
+</body>
+</html>
